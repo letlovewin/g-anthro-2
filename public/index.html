@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>g-anthro-2</title>
+    <link href="stylesheet.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tilt+Neon&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div class="container mx-auto mt-5">
+      <h1><i><strong>Anthropometric Measurements</strong></i></h1>
+      <p><strong>Context: </strong> This is a visualizer for the ANSUR II dataset of 2012, which can be used for a variety of purposes.</p>
+      <p><strong>Instructions: </strong>Select a measurement for your X and Y axes from the dropdowns, and then insert your own measurements if you'd like, to compare them with the dataset. All measurements are in milimeters unless stated otherwise.</p>
+      <div class="row mx-auto">
+        <div id="mainplot" class="col-md-7 mainplot">
+          <div>
+            <canvas id="myChart"></canvas>
+          </div>    
+        </div>
+        <div class="col-sm-2 offset-md-2">
+          <div class="form-floating">
+            <select class="form-select" id="x-axis-select" aria-label="X-axis measurement">
+              <option selected>Select...</option>
+              <option value="2">Abdominal Extension Depth (Sitting)</option>
+              <option value="3">Acromial Height</option>
+              <option value="4">Acromion Radial Length</option>
+              <option value="5">Ankle Circumference</option>
+              <option value="6">Axilla Height</option>
+              <option value="7">Ball Of Foot Circumference</option>
+              <option value="8">Ball Of Foot Length</option>
+              <option value="9">Biacromial Breadth</option>
+              <option value="10">Biceps Circumference (Flexed)</option>
+              <option value="11">Bicristal Breadth</option>
+              <option value="12">Bideltoid Breadth</option>
+              <option value="13">Bimalleolar Breadth</option>
+              <option value="14">Bitragion Chin Arc</option>
+              <option value="15">Bitragion Submandibular Arc</option>
+              <option value="16">Bizygomatic Breadth</option>
+              <option value="17">Buttock Circumference</option>
+              <option value="18">Buttock Depth</option>
+              <option value="19">Buttock Height</option>
+              <option value="20">Buttock Knee Length</option>
+              <option value="21">Buttock Popliteal Length</option>
+              <option value="22">Calf Circumference</option>
+              <option value="23">Cervical Height</option>
+              <option value="24">Chest Breadth</option>
+              <option value="25">Chest Circumference</option>
+              <option value="26">Chest Depth</option>
+              <option value="27">Chest Height</option>
+              <option value="28">Crotch Height</option>
+              <option value="29">Crotch Length Omphalion</option>
+              <option value="30">Crotch Length Posterior Omphalion</option>
+              <option value="31">Ear Breadth</option>
+              <option value="32">Ear Length</option>
+              <option value="33">Ear Protrusion</option>
+              <option value="34">Elbow Rest Height</option>
+              <option value="35">Eye Height (Sitting)</option>
+              <option value="36">Foot Breadth (Horizontal)</option>
+              <option value="37">Foot Length</option>
+              <option value="38">Forearm Center Of Grip Length</option>
+              <option value="39">Forearm Circumference (Flexed)</option>
+              <option value="40">Forearm-To-Forearm Breadth</option>
+              <option value="41">Forearm-To-Hand Length</option>
+              <option value="42">Functional Leg Length</option>
+              <option value="43">Hand Breadth</option>
+              <option value="44">Hand Circumference</option>
+              <option value="45">Hand Length</option>
+              <option value="46">Head Breadth</option>
+              <option value="47">Head Circumference</option>
+              <option value="48">Head Length</option>
+              <option value="49">Heel-To-Ankle Circumference</option>
+              <option value="50">Heel Breadth</option>
+              <option value="51">Hip Breadth</option>
+              <option value="52">Hip Breadth (Sitting)</option>
+              <option value="53">Iliocristal Height</option>
+              <option value="54">Interpupillary Breadth</option>
+              <option value="55">Interscye</option>
+              <option value="56">Knee Height (Midpatella)</option>
+              <option value="57">Knee Height (Sitting)</option>
+              <option value="58">Lateral Femoral Epicondyle Height</option>
+              <option value="59">Lateral Malleolus height</option>
+              <option value="60">Lower Thigh Circumference</option>
+              <option value="61">Menton Sellion Length</option>
+              <option value="62">Neck Circumference</option>
+              <option value="63">Neck Circumference (Base)</option>
+              <option value="64">Overhead Fingertip Reach (Sitting)</option>
+              <option value="65">Palm Length</option>
+              <option value="66">Popliteal Height</option>
+              <option value="67">Radial Stylion Length</option>
+              <option value="68">Shoulder Circumference</option>
+              <option value="69">Shoulder-To-Elbow Length</option>
+              <option value="70">Shoulder Length</option>
+              <option value="71">Sitting height</option>
+              <option value="72">Sleeve Length (Spine-To-Wrist)</option>
+              <option value="73">Sleeve Outseam</option>
+              <option value="74">Span</option>
+              <option value="75">Stature</option>
+              <option value="76">Suprasternal Height</option>
+              <option value="77">Tenth Rib Height</option>
+              <option value="78">Thigh Circumference</option>
+              <option value="79">Thigh Clearance</option>
+              <option value="80">Thumbtip Reach</option>
+              <option value="81">Tibial Height</option>
+              <option value="82">Tragion Top Of Head</option>
+              <option value="83">Trochanterion Height</option>
+              <option value="84">Vertical Trunk Circumference</option>
+              <option value="85">Waist Back Length</option>
+              <option value="86">Waist Breadth</option>
+              <option value="87">Waist Circumference</option>
+              <option value="88">Waist Depth</option>
+              <option value="89">Waist Front Length (Sitting)</option>
+              <option value="90">Waist Height Omphalion</option>
+              <option value="91">Wrist Circumference</option>
+              <option value="92">Wrist Height</option>
+              <option value="93">Age</option>
+              <option value="94">Height (Inches)</option>
+              <option value="95">Weight (Lbs)</option>
+            </select>
+            <label for="floatingSelect">X-Axis Measurement</label>
+          </div>
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="x-value-addon">X</span>
+            <input type="text" class="form-control" id="user-x-value" placeholder="Value for your data point" aria-label="X value for your data point" aria-describedby="x-value-addon">
+          </div>
+          <div class="form-floating">
+            <select class="form-select" id="y-axis-select" aria-label="Y-axis measurement">
+              <option selected>Select...</option>
+              <option value="2">Abdominal Extension Depth (Sitting)</option>
+              <option value="3">Acromial Height</option>
+              <option value="4">Acromion Radial Length</option>
+              <option value="5">Ankle Circumference</option>
+              <option value="6">Axilla Height</option>
+              <option value="7">Ball Of Foot Circumference</option>
+              <option value="8">Ball Of Foot Length</option>
+              <option value="9">Biacromial Breadth</option>
+              <option value="10">Biceps Circumference (Flexed)</option>
+              <option value="11">Bicristal Breadth</option>
+              <option value="12">Bideltoid Breadth</option>
+              <option value="13">Bimalleolar Breadth</option>
+              <option value="14">Bitragion Chin Arc</option>
+              <option value="15">Bitragion Submandibular Arc</option>
+              <option value="16">Bizygomatic Breadth</option>
+              <option value="17">Buttock Circumference</option>
+              <option value="18">Buttock Depth</option>
+              <option value="19">Buttock Height</option>
+              <option value="20">Buttock Knee Length</option>
+              <option value="21">Buttock Popliteal Length</option>
+              <option value="22">Calf Circumference</option>
+              <option value="23">Cervical Height</option>
+              <option value="24">Chest Breadth</option>
+              <option value="25">Chest Circumference</option>
+              <option value="26">Chest Depth</option>
+              <option value="27">Chest Height</option>
+              <option value="28">Crotch Height</option>
+              <option value="29">Crotch Length Omphalion</option>
+              <option value="30">Crotch Length Posterior Omphalion</option>
+              <option value="31">Ear Breadth</option>
+              <option value="32">Ear Length</option>
+              <option value="33">Ear Protrusion</option>
+              <option value="34">Elbow Rest Height</option>
+              <option value="35">Eye Height (Sitting)</option>
+              <option value="36">Foot Breadth (Horizontal)</option>
+              <option value="37">Foot Length</option>
+              <option value="38">Forearm Center Of Grip Length</option>
+              <option value="39">Forearm Circumference (Flexed)</option>
+              <option value="40">Forearm-To-Forearm Breadth</option>
+              <option value="41">Forearm-To-Hand Length</option>
+              <option value="42">Functional Leg Length</option>
+              <option value="43">Hand Breadth</option>
+              <option value="44">Hand Circumference</option>
+              <option value="45">Hand Length</option>
+              <option value="46">Head Breadth</option>
+              <option value="47">Head Circumference</option>
+              <option value="48">Head Length</option>
+              <option value="49">Heel-To-Ankle Circumference</option>
+              <option value="50">Heel Breadth</option>
+              <option value="51">Hip Breadth</option>
+              <option value="52">Hip Breadth (Sitting)</option>
+              <option value="53">Iliocristal Height</option>
+              <option value="54">Interpupillary Breadth</option>
+              <option value="55">Interscye</option>
+              <option value="56">Knee Height (Midpatella)</option>
+              <option value="57">Knee Height (Sitting)</option>
+              <option value="58">Lateral Femoral Epicondyle Height</option>
+              <option value="59">Lateral Malleolus height</option>
+              <option value="60">Lower Thigh Circumference</option>
+              <option value="61">Menton Sellion Length</option>
+              <option value="62">Neck Circumference</option>
+              <option value="63">Neck Circumference (Base)</option>
+              <option value="64">Overhead Fingertip Reach (Sitting)</option>
+              <option value="65">Palm Length</option>
+              <option value="66">Popliteal Height</option>
+              <option value="67">Radial Stylion Length</option>
+              <option value="68">Shoulder Circumference</option>
+              <option value="69">Shoulder-To-Elbow Length</option>
+              <option value="70">Shoulder Length</option>
+              <option value="71">Sitting height</option>
+              <option value="72">Sleeve Length (Spine-To-Wrist)</option>
+              <option value="73">Sleeve Outseam</option>
+              <option value="74">Span</option>
+              <option value="75">Stature</option>
+              <option value="76">Suprasternal Height</option>
+              <option value="77">Tenth Rib Height</option>
+              <option value="78">Thigh Circumference</option>
+              <option value="79">Thigh Clearance</option>
+              <option value="80">Thumbtip Reach</option>
+              <option value="81">Tibial Height</option>
+              <option value="82">Tragion Top Of Head</option>
+              <option value="83">Trochanterion Height</option>
+              <option value="84">Vertical Trunk Circumference</option>
+              <option value="85">Waist Back Length</option>
+              <option value="86">Waist Breadth</option>
+              <option value="87">Waist Circumference</option>
+              <option value="88">Waist Depth</option>
+              <option value="89">Waist Front Length (Sitting)</option>
+              <option value="90">Waist Height Omphalion</option>
+              <option value="91">Wrist Circumference</option>
+              <option value="92">Wrist Height</option>
+              <option value="93">Age</option>
+              <option value="94">Height (Inches)</option>
+              <option value="95">Weight (Lbs)</option>
+            </select>
+            <label for="floatingSelect">Y-Axis Measurement</label>
+          </div>
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="y-value-addon">Y</span>
+            <input type="text" class="form-control" id="user-y-value" placeholder="Value for your data point" aria-label="Y value for your data point" aria-describedby="y-value-addon">
+          </div>
+          <p class="error" id="error-message"></p>
+          <h4>Gender</h4>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="radioGender" id="radioFemale">
+            <label class="form-check-label" for="radioFemale">
+              Female
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="radioGender" id="radioMale" checked>
+            <label class="form-check-label" for="radioMale">
+              Male
+            </label>
+          </div>
+          <!--
+<div class="form-check">
+            <input class="form-check-input" type="radio" name="radioGender" id="radioBoth" checked>
+            <label class="form-check-label" for="radioBoth">
+              Both
+            </label>
+          </div>
+          -->
+          
+          <button class="btn btn-primary" id="btn-plot">Plot Data</button>
+        </div>
+        
+      </div>
+    </div>
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.7.0/d3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+    <script type="module" src="scripts/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  </body>
+</html>

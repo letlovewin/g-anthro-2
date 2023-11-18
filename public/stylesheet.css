@@ -1,0 +1,15 @@
+:root {--default-font: 'Tilt Neon', sans-serif;}
+.error {color: crimson;}
+h1{font-family: var(--default-font);}
+h2{font-family: var(--default-font);}
+h3{font-family: var(--default-font);}
+h4{font-family: var(--default-font);}
+h5{font-family: var(--default-font);}
+h6{font-family: var(--default-font);}
+p{font-family: var(--default-font);}
+
+@media only screen and (max-width: 600px) {
+    .mainplot {
+      height: 60%;
+    }
+  }
