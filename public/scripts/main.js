@@ -52,6 +52,7 @@ let plotData = async function(g,r){
     let user_x_percentile = 0;
     let user_y_percentile = 0;
     let n = data.length
+    let n2 = 0;
     for(let i=0;i<n;i++){ //generate data points from selected axes
       let b={x: parseFloat(data[i][x_axis.options[x_axis.selectedIndex].text]),y:parseFloat(data[i][y_axis.options[y_axis.selectedIndex].text])};
       if(global_race_constraint!=9&&data[i].Race==global_race_constraint){
@@ -115,8 +116,8 @@ let plotData = async function(g,r){
         }
       );
       if(user_point[0].x!=NaN){
-        user_x_percentile = (user_x_percentile/n)*100;
-        user_y_percentile = (user_y_percentile/n)*100;
+        user_x_percentile = Math.trunc((user_x_percentile/points.length)*100);
+        user_y_percentile = Math.trunc((user_y_percentile/points.length)*100);
         console.log(user_x_percentile);
         console.log(user_y_percentile);
         let x_perc = document.createTextNode(user_x_percentile + "th percentile in " + x_axis.options[x_axis.selectedIndex].text)
