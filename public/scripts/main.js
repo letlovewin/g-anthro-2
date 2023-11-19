@@ -1,8 +1,41 @@
 let cur_chart = null;
-
+let global_race_constraint = 9
+document.getElementById("radioBlack").addEventListener("change",function(e){
+  e.preventDefault();
+  global_race_constraint = 2;
+})
+document.getElementById("radioWhite").addEventListener("change",function(e){
+  e.preventDefault();
+  global_race_constraint = 1;
+})
+document.getElementById("radioHispanic").addEventListener("change",function(e){
+  e.preventDefault();
+  global_race_constraint = 3;
+})
+document.getElementById("radioAsian").addEventListener("change",function(e){
+  e.preventDefault();
+  global_race_constraint = 4;
+})
+document.getElementById("radioNative").addEventListener("change",function(e){
+  e.preventDefault();
+  global_race_constraint = 5;
+})
+document.getElementById("radioPacific").addEventListener("change",function(e){
+  e.preventDefault();
+  global_race_constraint = 6;
+})
+document.getElementById("radioOtherRace").addEventListener("change",function(e){
+  e.preventDefault();
+  global_race_constraint = 8;
+})
+document.getElementById("radioAll").addEventListener("change",function(e){
+  e.preventDefault();
+  global_race_constraint = 9;
+})
 //chart title is x_axis.options[x_axis.selectedIndex].text + " versus " + y_axis.options[y_axis.selectedIndex].text
 
-let plotData = async function(g){
+let plotData = async function(g,r){
+  document.getElementById("mainplotdesc").innerHTML=''
     let data = null;
     if (g=="f") {
       data = await d3.csv('scripts/data/femaledata.csv')
@@ -15,10 +48,35 @@ let plotData = async function(g){
     let points = []
     let x_axis = document.getElementById("x-axis-select");
     let y_axis = document.getElementById("y-axis-select");
-    for(let i=0;i<1986;i++){
-        points.push({x: parseFloat(data[i][x_axis.options[x_axis.selectedIndex].text]),y:parseFloat(data[i][y_axis.options[y_axis.selectedIndex].text])});
-    }
     let user_point = [{x:parseFloat(document.getElementById("user-x-value").value),y:parseFloat(document.getElementById("user-y-value").value)}]
+    let user_x_percentile = 0;
+    let user_y_percentile = 0;
+    let n = data.length
+    for(let i=0;i<n;i++){ //generate data points from selected axes
+      let b={x: parseFloat(data[i][x_axis.options[x_axis.selectedIndex].text]),y:parseFloat(data[i][y_axis.options[y_axis.selectedIndex].text])};
+      if(global_race_constraint!=9&&data[i].Race==global_race_constraint){
+        points.push(b);
+        if (document.getElementById("user-x-value").value!=0&&document.getElementById("user-y-value").value!=0){
+          if(b.x<user_point[0].x){
+            user_x_percentile++;
+          }
+          if(b.y<user_point[0].y){
+            user_y_percentile++;
+          }
+        }
+      } else if(global_race_constraint==9){
+        points.push(b);
+        if (document.getElementById("user-x-value").value!=0&&document.getElementById("user-y-value").value!=0){
+          if(b.x<user_point[0].x){
+            user_x_percentile++;
+          }
+          if(b.y<user_point[0].y){
+            user_y_percentile++;
+          }
+        }
+      }
+      
+    }
     let point_color = ''
     let point_label = ''
     if(g=="m"){
@@ -56,6 +114,18 @@ let plotData = async function(g){
         }
         }
       );
+      if(user_point[0].x!=NaN){
+        user_x_percentile = (user_x_percentile/n)*100;
+        user_y_percentile = (user_y_percentile/n)*100;
+        console.log(user_x_percentile);
+        console.log(user_y_percentile);
+        let x_perc = document.createTextNode(user_x_percentile + "th percentile in " + x_axis.options[x_axis.selectedIndex].text)
+        let br = document.createElement("br");
+        let y_perc = document.createTextNode(user_y_percentile + "th percentile in " + y_axis.options[y_axis.selectedIndex].text + '\n')
+        document.getElementById("mainplotdesc").appendChild(x_perc);
+        document.getElementById("mainplotdesc").appendChild(br)
+        document.getElementById("mainplotdesc").appendChild(y_perc);
+      }
 }
 
 document.getElementById("btn-plot").addEventListener("click",function(e){
