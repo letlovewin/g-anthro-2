@@ -13,13 +13,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Tilt+Neon&display=swap" rel="stylesheet">
   </head>
-  <body>
+  <body data-bs-theme="dark">
     <div class="container mx-auto mt-5 mb-5">
       <h1><i><strong>Anthropometric Measurements</strong></i></h1>
-      <p><strong>Context: </strong> This is a visualizer for the ANSUR II dataset of 2012, which can be used for a variety of purposes.</p>
+      
+      <p><strong>Context: </strong> This is a visualizer for the ANSUR II dataset of 2012, which can be used for a variety of purposes. This is an improved version of <a href="https://g-anthro.web.app">g-anthro 1</a>, with better technology and insights on data.</p>
       <p><strong>Instructions: </strong>Select a measurement for your X and Y axes from the dropdowns, and then insert your own measurements if you'd like, to compare them with the dataset. All measurements are in milimeters unless stated otherwise.</p>
       <div class="row mx-auto">
-        <div id="mainplot" class="col-md-7 mainplot text-center">
+        <div id="mainplot" class="col-md-10 mainplot text-center">
           <div>
             <canvas id="myChart"></canvas>
           </div>    
@@ -27,7 +28,7 @@
 
           </div>
         </div>
-        <div class="col-sm-2 offset-md-2">
+        <div class="col-sm-2">
           <div class="form-floating">
             <select class="form-select" id="x-axis-select" aria-label="X-axis measurement">
               <option selected>Select...</option>

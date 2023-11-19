@@ -106,20 +106,28 @@ let plotData = async function(g,r){
             ]
           },
           options: {
-            plugins: {
-                title: {
-                    display: true,
-                    text: 'Custom Chart Title'
-                }
-            }
+            scales: {
+              xAxes: [{
+                type: "linear",
+                gridLines: {
+                  display: true ,
+                  color: "#dedede"
+                },
+              }],
+              yAxes: [{
+                type: "linear",
+                gridLines: {
+                  display: true,
+                  color: "#dedede"
+                },
+              }]
+            },
         }
         }
       );
       if(user_point[0].x!=NaN){
         user_x_percentile = Math.trunc((user_x_percentile/points.length)*100);
         user_y_percentile = Math.trunc((user_y_percentile/points.length)*100);
-        console.log(user_x_percentile);
-        console.log(user_y_percentile);
         let x_perc = document.createTextNode(user_x_percentile + "th percentile in " + x_axis.options[x_axis.selectedIndex].text)
         let br = document.createElement("br");
         let y_perc = document.createTextNode(user_y_percentile + "th percentile in " + y_axis.options[y_axis.selectedIndex].text + '\n')
