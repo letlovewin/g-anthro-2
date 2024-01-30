@@ -68,10 +68,10 @@ let plotData = async function(g,r){
       } else if(global_race_constraint==9){
         points.push(b);
         if (document.getElementById("user-x-value").value!=0&&document.getElementById("user-y-value").value!=0){
-          if(b.x<user_point[0].x){
+          if(b.x<=user_point[0].x){
             user_x_percentile++;
           }
-          if(b.y<user_point[0].y){
+          if(b.y<=user_point[0].y){
             user_y_percentile++;
           }
         }
@@ -126,11 +126,31 @@ let plotData = async function(g,r){
         }
       );
       if(user_point[0].x!=NaN){
+        let x_perc_suffix = '';
+        let y_perc_suffix = '';
         user_x_percentile = Math.trunc((user_x_percentile/points.length)*100);
         user_y_percentile = Math.trunc((user_y_percentile/points.length)*100);
-        let x_perc = document.createTextNode(user_x_percentile + "th percentile in " + x_axis.options[x_axis.selectedIndex].text)
+        if(user_x_percentile%10==1){
+          x_perc_suffix = 'st';
+        } else if(user_x_percentile%10==2) {
+          x_perc_suffix = 'nd';
+        } else if(user_x_percentile%10==3) {
+          x_perc_suffix = 'rd';
+        } else {
+          x_perc_suffix = 'th';
+        }
+        if(user_y_percentile%10==1){
+          y_perc_suffix = 'st';
+        } else if(user_y_percentile%10==2) {
+          y_perc_suffix = 'nd';
+        } else if(user_y_percentile%10==3) {
+          y_perc_suffix = 'rd';
+        } else {
+          y_perc_suffix = 'th';
+        }
+        let x_perc = document.createTextNode(user_x_percentile + x_perc_suffix + " percentile in " + x_axis.options[x_axis.selectedIndex].text)
         let br = document.createElement("br");
-        let y_perc = document.createTextNode(user_y_percentile + "th percentile in " + y_axis.options[y_axis.selectedIndex].text + '\n')
+        let y_perc = document.createTextNode(user_y_percentile + y_perc_suffix + " percentile in " + y_axis.options[y_axis.selectedIndex].text + '\n')
         document.getElementById("mainplotdesc").appendChild(x_perc);
         document.getElementById("mainplotdesc").appendChild(br)
         document.getElementById("mainplotdesc").appendChild(y_perc);
